@@ -1,0 +1,32 @@
+<table style="width:100%">
+  <tr>
+    <th>Sr.</th>
+    <th>Route</th>
+    <th>Bill</th> 
+    <th>Expense</th>
+    <th>Salary</th>
+    <th>Petrol</th> 
+    <th>Income Tax</th>
+    <th>PRA</th>
+    <th>Cheque</th> 
+    <th>Income</th>
+    <th>Total Expense</th>
+  </tr>
+  <tr *ngFor="let i of data">
+    <td>{{i.id}}</td>
+    <td>{{i.route}}</td>
+    <td>{{i.bill}}</td> 
+    <td>{{i.exp}}</td>
+    <td>{{i.salary}}</td>
+    <td>{{i.petrol}}</td> 
+    <td>{{i.income_tax}}</td>
+    <td>{{i.pra}}</td>
+    <td>{{i.cheque}}</td> 
+    <td>{{i.income}}</td>
+    <td>{{i.total_expense}}</td>
+    <button (click)="edit(i.id)">Edit</button>
+    <button (click)="remove(i.id)">Delete</button>
+
+  </tr>
+</table>
+<a routerLink="/add">Add</a>
