@@ -12,10 +12,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class AddComponent implements OnInit {
   
-  error = {invalid: false}
+  error:any = {invalid: false}
   invalid = false
   isAdd = true
-  text = ["Add"]
+  text = "Add"
+  id;
   data:any = {}
   url = 'http://127.0.0.1:8000/api/v1/'
 
