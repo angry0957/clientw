@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 })
 export class DataComponent implements OnInit {
   data = [];
-	url = "http://127.0.0.1:8000/api/v1/";
+	url = "https://route123.herokuapp.com/api/v1/";
 
 	constructor(private http:HttpClient, private router: Router) { }
 

@@ -18,7 +18,7 @@ export class AddComponent implements OnInit {
   text = "Add"
   id;
   data:any = {}
-  url = 'http://127.0.0.1:8000/api/v1/'
+  url = 'https://route123.herokuapp.com/api/v1/'
 
    constructor(private router: Router, private activatedRoute: ActivatedRoute, private http:HttpClient) {
    		console.log(location.href)

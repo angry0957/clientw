@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 	password = '';
 	error:any = {invalid: false}
 
-	url = "http://localhost:8000/rest-auth/login/";
+	url = "https://route123.herokuapp.com/rest-auth/login/";
 
 	constructor(private http:HttpClient, private router: Router) { }
 
