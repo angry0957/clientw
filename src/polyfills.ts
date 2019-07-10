@@ -13,6 +13,8 @@
  *
  * Learn more in https://angular.io/guide/browser-support
  */
+ import 'core-js/es7/reflect';
+
 
 /***************************************************************************************************
  * BROWSER POLYFILLS
