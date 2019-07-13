@@ -4,6 +4,8 @@ import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 @Component({
 	selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
 	password = '';
 	error:any = {invalid: false}
 
-	url = "https://route123.herokuapp.com/rest-auth/login/";
+	url = environment.apiUrl + "/rest-auth/login/";
 
 	constructor(private http:HttpClient, private router: Router) { }
 

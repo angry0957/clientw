@@ -8,51 +8,33 @@ import { environment } from '../../environments/environment';
 import Swal from 'sweetalert2'
 
 @Component({
-  selector: 'app-data',
-  templateUrl: './data.component.html',
-  styleUrls: ['./data.component.scss']
+  selector: 'app-route',
+  templateUrl: './route.component.html',
+  styleUrls: ['./route.component.scss']
 })
-export class DataComponent implements OnInit {
+export class RouteComponent implements OnInit {
   data = [];
-	url = environment.apiUrl + "/api/v1/data/";
+	url = environment.apiUrl + "/api/v1/route/";
   routes = []
 
 	constructor(private http:HttpClient, private router: Router) { }
 
   ngOnInit() {
-    this.http.get(environment.apiUrl + '/api/v1/route/').toPromise().then((res:any) => {
-        this.routes = res;
-      }
-      );
-	  this.getdata();
+  	this.getdata();
   }
 
   getdata(){
-  		this.http.get(this.url).toPromise().then((res:any) => {
-			for (var i = res.length - 1; i >= 0; i--) {
-        for (var j = this.routes.length - 1; j >= 0; j--) {
-          if (res[i]['route'] == this.routes[j]['id']){
-            res[i]['route'] = this.routes[j]['route']
-          }
-        }
+  	    this.http.get(this.url).toPromise().then((res:any) => {
+        this.data = res;
       }
-      this.data = res;
-
-		},
-		(err:any)=> {
-			if(err.status == 401) {
-			}
-		}
-		);
-    
+      );
   }
 
   edit(id){
-  	this.router.navigate(["/edit"], { queryParams: { "id": id} })
+  	this.router.navigate(["/edit-route"], { queryParams: { "id": id} })
   }
 
   remove(id){
-  	console.log(id)
   	Swal.fire({
   title: 'Are you sure?',
   text: 'You will not be able to recover this imaginary file!',
@@ -69,15 +51,17 @@ export class DataComponent implements OnInit {
       'Your imaginary file has been deleted.',
       'success'
     )
-
-		},
-		(err:any)=> {
-			if(err.status == 401) {
-			}
+	},
+	(err:any)=> {
+		if(err.status == 500) {
+			Swal.fire(
+		      'Sorry',
+		      'You cannot delete that Route',
+		      'error'
+		    )
 		}
-		);
-  // For more information about handling dismissals please visit
-  // https://sweetalert2.github.io/#handling-dismissals
+	}
+	);
   } else if (result.dismiss === Swal.DismissReason.cancel) {
     Swal.fire(
       'Cancelled',
@@ -87,5 +71,4 @@ export class DataComponent implements OnInit {
   }
 })
   }
-
 }

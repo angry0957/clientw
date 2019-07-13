@@ -7,33 +7,21 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-edit-route',
+  templateUrl: './edit-route.component.html',
+  styleUrls: ['./edit-route.component.scss']
 })
-export class AddComponent implements OnInit {
-  
-  error:any = {invalid: false}
+export class EditRouteComponent implements OnInit {
+error:any = {invalid: false}
   invalid = false
   isAdd = true
   text = "Add"
   id;
   data:any = {}
-  url = environment.apiUrl + '/api/v1/data/'
+  url = environment.apiUrl + '/api/v1/route/'
   routes:any [] = []
 
    constructor(private router: Router, private activatedRoute: ActivatedRoute, private http:HttpClient) {
-		this.http.get(environment.apiUrl + '/api/v1/route/').toPromise().then((res:any) => {
-			this.routes = res;
-			console.log(res);
-		},
-		(err:any)=> {
-			if(err.status == 400) {
-				this.error.error = "Credientials are not valid";
-				this.error.invalid = true
-			}
-		}
-		);
 		if(location.href.includes('edit')){
 			this.isAdd = false
 			this.text = 'Update'
@@ -57,10 +45,9 @@ export class AddComponent implements OnInit {
   }
 
   	onSubmit(f: NgForm) {
-  		this.data['route'] = parseInt(this.data['route'])
   		if(this.isAdd == true){
   			this.http.post(this.url,this.data).toPromise().then((res:any) => {
-			this.router.navigate(['/data']);
+			this.router.navigate(['/route']);
 		},
 		(err:any)=> {
 			if(err.status == 400) {
@@ -72,7 +59,7 @@ export class AddComponent implements OnInit {
   		}
 		else {
 			this.http.put(this.url + this.id + '/', this.data).toPromise().then((res:any) => {
-			this.router.navigate(['/data']);
+				this.router.navigate(['/route']);
 		},
 		(err:any)=> {
 			if(err.status == 400) {

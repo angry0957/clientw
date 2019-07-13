@@ -9,14 +9,18 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DataComponent } from './data/data.component';
 import { AuthInterceptor } from './services/auth-interceptor';
-import { AddComponent } from './add/add.component'
+import { AddComponent } from './add/add.component';
+import { RouteComponent } from './route/route.component';
+import { EditRouteComponent } from './edit-route/edit-route.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DataComponent,
-    AddComponent
+    AddComponent,
+    RouteComponent,
+    EditRouteComponent
   ],
   imports: [
     BrowserModule,

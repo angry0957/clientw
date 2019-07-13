@@ -1,0 +1,21 @@
+<div class="card-body col-sm-8 offset-2">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+       <div class="input-group form-group col-sm-8">
+        <div>
+        <p style="font-size: 20px"><b>Route:</b></p>
+    </div>
+    <input type="text" class="form-control" placeholder="route" style="background-color: white" id="route" required name="route" [(ngModel)]="data.route" #route="ngModel">
+        <div class="form-group">
+          <div *ngIf="route.invalid && (route.dirty || route.touched)"
+          class="alert alert-danger">
+            <div *ngIf="route.errors.required">
+              Please Enter route
+            </div>
+          </div>
+        </div>            
+      </div>
+       <div class="form-group">
+          <input type="submit" value={{text}} class="btn float-right btn-success">
+      </div>
+    </form>
+  </div>

@@ -1,4 +1,8 @@
-<table style="width:100%">
+<a class="btn btn-warning mt-2 mb-2" routerLink="/route">Go to Routes</a>
+<h1 class="text-center">
+  Routes
+</h1>
+<table class="table table-striped table-bordered">
   <tr>
     <th>Sr.</th>
     <th>Route</th>
@@ -11,9 +15,11 @@
     <th>Cheque</th> 
     <th>Income</th>
     <th>Total Expense</th>
+    <th></th>
+    <th></th>
   </tr>
-  <tr *ngFor="let i of data">
-    <td>{{i.id}}</td>
+  <tr *ngFor="let i of data; let index=index">
+    <td>{{index + 1}}</td>
     <td>{{i.route}}</td>
     <td>{{i.bill}}</td> 
     <td>{{i.exp}}</td>
@@ -24,9 +30,8 @@
     <td>{{i.cheque}}</td> 
     <td>{{i.income}}</td>
     <td>{{i.total_expense}}</td>
-    <button (click)="edit(i.id)">Edit</button>
-    <button (click)="remove(i.id)">Delete</button>
-
+    <td><button class="btn btn-info m-1" (click)="edit(i.id)">Edit</button></td>
+    <td><button class="btn btn-danger m-1" (click)="remove(i.id)">Delete</button></td>
   </tr>
 </table>
-<a routerLink="/add">Add</a>
+<a class="btn btn-success ml-5 mt-2" routerLink="/add">Add</a>

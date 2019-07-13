@@ -4,7 +4,9 @@
         <div>
         <p style="font-size: 20px"><b>Route:</b></p>
     </div>
-    <input type="text" class="form-control" placeholder="Route" style="background-color: white" id="route" required name="route" [(ngModel)]="data.route" #route="ngModel">
+    <select id="route" name="route" [(ngModel)]="data.route" #route="ngModel" required class='form-control'>                                                            
+        <option *ngFor="let i of routes" value={{i.id}} >{{i.route}}</option>
+    </select> 
         <div class="form-group">
           <div *ngIf="route.invalid && (route.dirty || route.touched)"
           class="alert alert-danger">
@@ -141,7 +143,7 @@
         </div>            
       </div>
       <div class="form-group">
-              <input type="submit" value={{text}} class="btn float-right login_btn">
+              <input type="submit" value={{text}} class="btn float-right btn-success">
       </div>
 
     </form>
