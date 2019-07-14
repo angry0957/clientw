@@ -12,6 +12,8 @@ import { AuthInterceptor } from './services/auth-interceptor';
 import { AddComponent } from './add/add.component';
 import { RouteComponent } from './route/route.component';
 import { EditRouteComponent } from './edit-route/edit-route.component'
+import { ExportAsModule } from 'ngx-export-as';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { EditRouteComponent } from './edit-route/edit-route.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ExportAsModule,
+    NgbModule
 
   ],
   providers: [

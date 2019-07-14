@@ -2,7 +2,7 @@
 <h1 class="text-center">
   Routes
 </h1>
-<table class="table table-striped table-bordered">
+<table id="data" class="table table-striped table-bordered table-sm">
   <tr>
     <th>Sr.</th>
     <th>Route</th>
@@ -15,6 +15,8 @@
     <th>Cheque</th> 
     <th>Income</th>
     <th>Total Expense</th>
+    <th>Created</th>
+    <th>Updated</th>
     <th></th>
     <th></th>
   </tr>
@@ -30,8 +32,24 @@
     <td>{{i.cheque}}</td> 
     <td>{{i.income}}</td>
     <td>{{i.total_expense}}</td>
+    <td>{{i.date | date:'MM/dd/yyyy h:mm a'}}</td>
+    <td>{{i.updated_at | date:'MM/dd/yyyy h:mm a'}}</td>
     <td><button class="btn btn-info m-1" (click)="edit(i.id)">Edit</button></td>
     <td><button class="btn btn-danger m-1" (click)="remove(i.id)">Delete</button></td>
   </tr>
 </table>
-<a class="btn btn-success ml-5 mt-2" routerLink="/add">Add</a>
+<div class="ml-5 mt-2">
+    <div ngbDropdown>
+      <a class="btn btn-success" routerLink="/add">Add</a>
+      <button class="btn btn-outline-success" id="dropdownBasic1" ngbDropdownToggle>Save</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button (click)="save_csv()" ngbDropdownItem>Save as csv</button>
+        <button (click)="save_png()" ngbDropdownItem>Save as png</button>
+      </div>
+    </div>
+</div>
+
+
+
+
+

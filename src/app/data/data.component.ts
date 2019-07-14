@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import Swal from 'sweetalert2'
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
 @Component({
   selector: 'app-data',
@@ -16,8 +17,15 @@ export class DataComponent implements OnInit {
   data = [];
 	url = environment.apiUrl + "/api/v1/data/";
   routes = []
-
-	constructor(private http:HttpClient, private router: Router) { }
+  exportAsConfig: ExportAsConfig = {
+    type: 'csv', // the type you want to download
+    elementId: 'data', // the id of html/table element
+  }
+  exportAsConfig2: ExportAsConfig = {
+    type: 'png', // the type you want to download
+    elementId: 'data', // the id of html/table element
+  }
+	constructor(private http:HttpClient, private router: Router, private exportAsService: ExportAsService) { }
 
   ngOnInit() {
     this.http.get(environment.apiUrl + '/api/v1/route/').toPromise().then((res:any) => {
@@ -86,6 +94,16 @@ export class DataComponent implements OnInit {
     )
   }
 })
+  }
+
+  save_csv(){
+    this.exportAsService.save(this.exportAsConfig, 'Data').subscribe(() => {
+    });
+  }
+
+  save_png(){
+    this.exportAsService.save(this.exportAsConfig2, 'Data').subscribe(() => {
+    });
   }
 
 }
