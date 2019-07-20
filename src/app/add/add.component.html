@@ -1,110 +1,169 @@
-<div class="card-body col-sm-8 offset-2">
+<a (click)="logout()" class="btn btn-warning mt-2 mb-2 float-right text-white">Logout</a>
+<div class="row">
+<div class="card-body col-sm-10 offset-2">
     <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-      <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>Route:</b></p>
-    </div>
-    <select id="route" name="route" [(ngModel)]="data.route" #route="ngModel" required class='form-control'>                                                            
-        <option *ngFor="let i of routes" value={{i.id}} >{{i.route}}</option>
-    </select> 
-        <div class="form-group">
-          <div *ngIf="route.invalid && (route.dirty || route.touched)"
-          class="alert alert-danger">
-            <div *ngIf="route.errors.required">
-              Please Enter Route
+      
+      <div class="row">
+        <div class="form-group col-sm-12">
+        <div class="row">
+            <div class="col-sm-2">
+              <p style="font-size: 20px"><b>Route:</b></p>
+            </div>
+            <div class=col-sm-9>
+                <select id="route" name="route" [(ngModel)]="data.route" #route="ngModel" required class='form-control'>                                                            
+                  <option *ngFor="let i of routes" value={{i.id}} >{{i.route}}</option>
+                </select> 
+                <div class="form-group">
+                  <div *ngIf="route.invalid && (route.dirty || route.touched)"
+                  class="alert alert-danger">
+                    <div *ngIf="route.errors.required">
+                      Please Enter Route
+                    </div>
+                  </div>
+                </div>            
+            </div>
+        </div>
+      </div>
+      </div>
+      
+      <div class="row">
+       <div class="form-group col-sm-12">
+          <div class="row">
+            <div class="col-sm-2">
+              <p style="font-size: 20px"><b>Bill:</b></p>
+            </div>
+            <div class="col-sm-9">
+              <input type="number" class="form-control" placeholder="bill" style="background-color: white" id="bill" required name="bill" [(ngModel)]="data.bill" #bill="ngModel">
+              <div class="form-group">
+                <div *ngIf="bill.invalid && (bill.dirty || bill.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="bill.errors.required">
+                    Please Enter bill
+                  </div>
+                </div>
+              </div>            
             </div>
           </div>
-        </div>						
+        </div>
       </div>
-       <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>bill:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="bill" style="background-color: white" id="bill" required name="bill" [(ngModel)]="data.bill" #bill="ngModel">
-        <div class="form-group">
-          <div *ngIf="bill.invalid && (bill.dirty || bill.touched)"
-          class="alert alert-danger">
-            <div *ngIf="bill.errors.required">
-              Please Enter bill
+
+      <div class="row">
+       <div class="form-group col-sm-12">
+        <div class="row">
+          <div class="col-sm-2">
+            <p style="font-size: 20px"><b>Expense:</b></p>
+          </div>
+          <div class="col-sm-9">
+             <input type="number" class="form-control" placeholder="expense" style="background-color: white" id="exp" required name="exp" [(ngModel)]="data.exp" #exp="ngModel">
+              <div class="form-group">
+                <div *ngIf="exp.invalid && (exp.dirty || exp.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="exp.errors.required">
+                    Please Enter expense
+                  </div>
+                </div>
+              </div>            
             </div>
           </div>
-        </div>            
+        </div> 
       </div>
-       <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>expense:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="expense" style="background-color: white" id="exp" required name="exp" [(ngModel)]="data.exp" #exp="ngModel">
-        <div class="form-group">
-          <div *ngIf="exp.invalid && (exp.dirty || exp.touched)"
-          class="alert alert-danger">
-            <div *ngIf="exp.errors.required">
-              Please Enter expense
+
+       
+       
+     <div class="row">
+      <div class="form-group col-sm-12">
+        <div class="row">
+            <div class="col-sm-2">
+              <p style="font-size: 20px"><b>Salary:</b></p>
             </div>
-          </div>
-        </div>            
-      </div>
-      <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>salary:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="salary" style="background-color: white" id="salary" required name="salary" [(ngModel)]="data.salary" #salary="ngModel">
-        <div class="form-group">
-          <div *ngIf="salary.invalid && (salary.dirty || salary.touched)"
-          class="alert alert-danger">
-            <div *ngIf="salary.errors.required">
-              Please Enter salary
+            <div class="col-sm-9">
+              <input type="number" class="form-control" placeholder="salary" style="background-color: white" id="salary" required name="salary" [(ngModel)]="data.salary" #salary="ngModel">
+                  <div class="form-group">
+                    <div *ngIf="salary.invalid && (salary.dirty || salary.touched)"
+                    class="alert alert-danger">
+                      <div *ngIf="salary.errors.required">
+                        Please Enter salary
+                      </div>
+                    </div>
+                  </div>            
+                </div>
             </div>
+        </div>
+     </div>
+
+     <div class="row">
+      <div class="form-group col-sm-12">
+        <div class="row">
+          <div class="col-sm-2">
+            <p style="font-size: 20px"><b>Petrol:</b></p>
           </div>
-        </div>            
+          <div class="col-sm-9">
+                <input type="number" class="form-control" placeholder="petrol" style="background-color: white" id="petrol" required name="petrol" [(ngModel)]="data.petrol" #petrol="ngModel">
+                <div class="form-group">
+                  <div *ngIf="petrol.invalid && (petrol.dirty || petrol.touched)"
+                  class="alert alert-danger">
+                    <div *ngIf="petrol.errors.required">
+                      Please Enter petrol
+                    </div>
+                  </div>
+                </div>            
+              </div> 
+             </div>
+        </div>
       </div>
-      <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>petrol:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="petrol" style="background-color: white" id="petrol" required name="petrol" [(ngModel)]="data.petrol" #petrol="ngModel">
-        <div class="form-group">
-          <div *ngIf="petrol.invalid && (petrol.dirty || petrol.touched)"
-          class="alert alert-danger">
-            <div *ngIf="petrol.errors.required">
-              Please Enter petrol
+
+      
+      <div class="row">
+        <div class="form-group col-sm-12">
+          <div class="row">
+              <div class="col-sm-2">
+                <p style="font-size: 20px"><b>Income Tax:</b></p>
+              </div>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" placeholder="income_tax" style="background-color: white" id="income_tax" required name="income_tax" [(ngModel)]="data.income_tax" #income_tax="ngModel">
+                <div class="form-group">
+                  <div *ngIf="income_tax.invalid && (income_tax.dirty || income_tax.touched)"
+                  class="alert alert-danger">
+                    <div *ngIf="income_tax.errors.required">
+                      Please Enter income_tax
+                    </div>
+                  </div>
+                </div>            
+              </div>
+          </div>
+        </div>
+      </div>
+       
+
+       <div class="row">
+            <div class="form-group col-sm-12">
+              <div class="row">
+                  <div class="col-sm-2">
+                    <p style="font-size: 20px"><b>PRA:</b></p>
+                  </div>
+                  <div class="col-sm-9">
+                          <input type="number" class="form-control" placeholder="pra" style="background-color: white" id="pra" required name="pra" [(ngModel)]="data.pra" #pra="ngModel">
+              <div class="form-group">
+                <div *ngIf="pra.invalid && (pra.dirty || pra.touched)"
+                class="alert alert-danger">
+                  <div *ngIf="pra.errors.required">
+                    Please Enter pra
+                  </div>
+                </div>
+              </div>            
             </div>
-          </div>
-        </div>            
-      </div>
-       <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>income_tax:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="income_tax" style="background-color: white" id="income_tax" required name="income_tax" [(ngModel)]="data.income_tax" #income_tax="ngModel">
-        <div class="form-group">
-          <div *ngIf="income_tax.invalid && (income_tax.dirty || income_tax.touched)"
-          class="alert alert-danger">
-            <div *ngIf="income_tax.errors.required">
-              Please Enter income_tax
+              </div>
+              </div>
+       </div>
+       
+       <div class="row">
+          <div class="form-group col-sm-12">
+          <div class="row">
+            <div class="col-sm-2">
+              <p style="font-size: 20px"><b>Cheque:</b></p>
             </div>
-          </div>
-        </div>            
-      </div>
-       <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>pra:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="pra" style="background-color: white" id="pra" required name="pra" [(ngModel)]="data.pra" #pra="ngModel">
-        <div class="form-group">
-          <div *ngIf="pra.invalid && (pra.dirty || pra.touched)"
-          class="alert alert-danger">
-            <div *ngIf="pra.errors.required">
-              Please Enter pra
-            </div>
-          </div>
-        </div>            
-      </div>
-       <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>cheque:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="cheque" style="background-color: white" id="cheque" required name="cheque" [(ngModel)]="data.cheque" #cheque="ngModel">
+            <div class="col-sm-9">
+                  <input type="number" class="form-control" placeholder="cheque" style="background-color: white" id="cheque" required name="cheque" [(ngModel)]="data.cheque" #cheque="ngModel">
         <div class="form-group">
           <div *ngIf="cheque.invalid && (cheque.dirty || cheque.touched)"
           class="alert alert-danger">
@@ -114,10 +173,20 @@
           </div>
         </div>            
       </div>
-      <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>income:</b></p>
-    </div>
+            </div>
+          </div>
+       </div>
+
+
+
+       <div class="row">
+         <div class="form-group col-sm-12">
+          <div class="row">
+            <div class=col-sm-2>
+                <p style="font-size: 20px"><b>Income:</b></p>
+            </div>
+            <div class="col-sm-9">
+                
     <input type="number" class="form-control" placeholder="income" style="background-color: white" id="income" required name="income" [(ngModel)]="data.income" #income="ngModel">
         <div class="form-group">
           <div *ngIf="income.invalid && (income.dirty || income.touched)"
@@ -128,11 +197,23 @@
           </div>
         </div>            
       </div>
-       <div class="input-group form-group col-sm-8">
-        <div>
-        <p style="font-size: 20px"><b>total_expense:</b></p>
-    </div>
-    <input type="number" class="form-control" placeholder="total_expense" style="background-color: white" id="total_expense" required name="total_expense" [(ngModel)]="data.total_expense" #total_expense="ngModel">
+       
+
+       </div>
+ 
+            </div>
+          </div>
+       
+
+       <div class="row">
+          <div class="form-group col-sm-12">
+
+            <div class="row">
+              <div class="col-sm-2">
+                  <p style="font-size: 20px"><b>total_expense:</b></p>
+              </div>
+              <div class="col-sm-9">
+                    <input type="number" class="form-control" placeholder="total_expense" style="background-color: white" id="total_expense" required name="total_expense" [(ngModel)]="data.total_expense" #total_expense="ngModel">
         <div class="form-group">
           <div *ngIf="total_expense.invalid && (total_expense.dirty || total_expense.touched)"
           class="alert alert-danger">
@@ -141,10 +222,20 @@
             </div>
           </div>
         </div>            
-      </div>
+      </div>  
+       </div>
+              </div>
+
+            </div>
+        
+        
+ 
+
+       
       <div class="form-group">
-              <input type="submit" value={{text}} class="btn float-right btn-success">
+              <input type="submit" [disabled]="f.form.pristine || f.form.invalid" value={{text}} class="btn float-right btn-success">
       </div>
 
     </form>
+  </div>
   </div>

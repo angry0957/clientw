@@ -37,7 +37,7 @@ export class RouteComponent implements OnInit {
   remove(id){
   	Swal.fire({
   title: 'Are you sure?',
-  text: 'You will not be able to recover this imaginary file!',
+  text: 'You will not be able to recover that record!',
   type: 'warning',
   showCancelButton: true,
   confirmButtonText: 'Yes, delete it!',
@@ -48,7 +48,7 @@ export class RouteComponent implements OnInit {
 	this.getdata();
     Swal.fire(
       'Deleted!',
-      'Your imaginary file has been deleted.',
+      'Your record has been deleted.',
       'success'
     )
 	},
@@ -56,7 +56,7 @@ export class RouteComponent implements OnInit {
 		if(err.status == 500) {
 			Swal.fire(
 		      'Sorry',
-		      'You cannot delete that Route',
+		      'You cannot delete that Route because that route has data. First remove data of that route',
 		      'error'
 		    )
 		}
@@ -65,10 +65,22 @@ export class RouteComponent implements OnInit {
   } else if (result.dismiss === Swal.DismissReason.cancel) {
     Swal.fire(
       'Cancelled',
-      'Your imaginary file is safe :)',
+      'Your record is safe :)',
       'error'
     )
   }
 })
+  }
+  logout(){
+    let logoutUrl = environment.apiUrl + '/rest-auth/logout/'
+    this.http.post(logoutUrl, {}).toPromise().then((res:any) => {
+      localStorage.setItem('token', '');
+      this.router.navigate(['/'])
+    },
+    (err:any)=> {
+      localStorage.setItem('token', '');
+      this.router.navigate(['/'])
+    }
+    );
   }
 }

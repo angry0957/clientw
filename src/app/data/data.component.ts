@@ -63,7 +63,7 @@ export class DataComponent implements OnInit {
   	console.log(id)
   	Swal.fire({
   title: 'Are you sure?',
-  text: 'You will not be able to recover this imaginary file!',
+  text: 'You will not be able to recover that record!',
   type: 'warning',
   showCancelButton: true,
   confirmButtonText: 'Yes, delete it!',
@@ -74,7 +74,7 @@ export class DataComponent implements OnInit {
 	this.getdata();
     Swal.fire(
       'Deleted!',
-      'Your imaginary file has been deleted.',
+      'Your record has been deleted.',
       'success'
     )
 
@@ -89,7 +89,7 @@ export class DataComponent implements OnInit {
   } else if (result.dismiss === Swal.DismissReason.cancel) {
     Swal.fire(
       'Cancelled',
-      'Your imaginary file is safe :)',
+      'Your data is safe :)',
       'error'
     )
   }
@@ -104,6 +104,19 @@ export class DataComponent implements OnInit {
   save_png(){
     this.exportAsService.save(this.exportAsConfig2, 'Data').subscribe(() => {
     });
+  }
+
+  logout(){
+    let logoutUrl = environment.apiUrl + '/rest-auth/logout/'
+    this.http.post(logoutUrl, {}).toPromise().then((res:any) => {
+      localStorage.setItem('token', '');
+      this.router.navigate(['/'])
+    },
+    (err:any)=> {
+      localStorage.setItem('token', '');
+      this.router.navigate(['/'])
+    }
+    );
   }
 
 }

@@ -14,6 +14,7 @@ import { environment } from '../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 	username = '';
+	data:any = {}
 	password = '';
 	error:any = {invalid: false}
 
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	onSubmit(f: NgForm) {
+		this.error.invalid = false;
 		let formdata = {
 			'email': f.value.username,
 			'password': f.value.password,

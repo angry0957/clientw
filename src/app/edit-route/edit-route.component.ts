@@ -71,4 +71,17 @@ error:any = {invalid: false}
 		}
 	}
 
+	logout(){
+    let logoutUrl = environment.apiUrl + '/rest-auth/logout/'
+    this.http.post(logoutUrl, {}).toPromise().then((res:any) => {
+      localStorage.setItem('token', '');
+      this.router.navigate(['/'])
+    },
+    (err:any)=> {
+      localStorage.setItem('token', '');
+      this.router.navigate(['/'])
+    }
+    );
+  }
+
 }
