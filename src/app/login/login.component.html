@@ -14,7 +14,7 @@
     </nav>
   
     <div class="d-flex justify-content-center h-100">
-      <div class="card">
+      <div class="card col-sm-10 col-md-5">
         <div class="card-header">
           <h3>Sign In</h3>
           <div class="d-flex justify-content-end social_icon">
@@ -32,11 +32,11 @@
                 </div>
               </div>
             </div>
-            <div class="input-group form-group">
+            <div class="form-group">
               <div class="input-group-prepend">
-                <span class="input-group"><i class="fas fa-user"></i></span>
+                <span class=""><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" class="form-control" placeholder="Email" style="background-color: white" name="username" ngModel required #username="ngModel">
+              <input type="text" class="form-control col-sm-11 offset-1" placeholder="Email" style="background-color: white" name="username" ngModel required #username="ngModel">
               <div class="form-group col-sm-11 offset-1 mt-1">
                 <div *ngIf="username.invalid && (username.dirty || username.touched)"
                 class="alert alert-danger">
@@ -49,11 +49,11 @@
                 </div>
               </div>						
             </div>
-            <div class="input-group form-group">
+            <div class="form-group">
               <div class="input-group-prepend">
                 <span class="input-group-te"><i class="fas fa-key"></i></span>
               </div>
-              <input type="password" class="form-control" placeholder="Password" style="background-color: white" name="password" ngModel required  #password="ngModel">
+              <input type="password" class="form-control col-sm-11 offset-1" placeholder="Password" style="background-color: white" name="password" ngModel required  #password="ngModel">
               <div class="form-group col-sm-11 offset-1 mt-1">
                 <div *ngIf="password.invalid && (password.dirty || password.touched)"
                 class="alert alert-danger">
