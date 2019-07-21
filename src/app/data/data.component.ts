@@ -7,6 +7,11 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import Swal from 'sweetalert2'
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+import { ExportToCsv } from 'export-to-csv';
+// import jsPDF from 'jspdf';
+// import autotable from 'jspdf';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-data',
@@ -26,6 +31,20 @@ export class DataComponent implements OnInit {
     type: 'png', // the type you want to download
     elementId: 'data', // the id of html/table element
   }
+
+  options:any = { 
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalSeparator: '.',
+    showLabels: true, 
+    showTitle: true,
+    title: 'Data',
+    filename: 'data',
+    useTextFile: false,
+    useBom: true,
+    useKeysAsHeaders: true,
+  };
+
 	constructor(private http:HttpClient, private router: Router, private exportAsService: ExportAsService) { }
 
   ngOnInit() {
@@ -35,7 +54,7 @@ export class DataComponent implements OnInit {
       );
 	  this.getdata();
     this.config = {
-      itemsPerPage: 12,
+      itemsPerPage: 20,
       currentPage: 1,
       totalItems: this.data.length
     };
@@ -103,13 +122,17 @@ export class DataComponent implements OnInit {
   }
 
   save_csv(){
-    this.exportAsService.save(this.exportAsConfig, 'Data').subscribe(() => {
-    });
+    const csvExporter = new ExportToCsv(this.options);
+    csvExporter.generateCsv(this.data);
   }
 
   save_png(){
     this.exportAsService.save(this.exportAsConfig2, 'Data').subscribe(() => {
     });
+  }
+
+  save_pdf(){
+    this.convert()
   }
 
   logout(){
@@ -128,5 +151,24 @@ export class DataComponent implements OnInit {
   pageChanged(event){
     this.config.currentPage = event;
   }
+
+      convert() {
+
+        var doc = new jsPDF();
+        doc.autoTable({
+           columnStyles: {europe: {halign: 'center'}}, // European countries centered
+           body: this.data,
+    columns: [
+          {header: 'Route', dataKey: 'route'}, {header: 'Bill', dataKey: 'bill'},
+          {header: 'Expense', dataKey: 'exp'}, {header: 'Salary', dataKey: 'salary'},
+          {header: 'Petrol', dataKey: 'petrol'}, {header: 'Income Tax', dataKey: 'income_tax'},
+          {header: 'PRA', dataKey: 'pra'}, {header: 'Cheque', dataKey: 'cheque'},
+          {header: 'Income', dataKey: 'income'}, {header: 'Total Expense', dataKey: 'total_expense'},
+
+      ]
+     })
+        doc.save('data.pdf');
+
+      }
 
 }
