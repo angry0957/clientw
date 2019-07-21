@@ -14,6 +14,7 @@ import { RouteComponent } from './route/route.component';
 import { EditRouteComponent } from './edit-route/edit-route.component'
 import { ExportAsModule } from 'ngx-export-as';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     HttpClientModule,
     ExportAsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
 
   ],
   providers: [

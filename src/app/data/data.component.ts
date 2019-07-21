@@ -15,6 +15,7 @@ import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 })
 export class DataComponent implements OnInit {
   data = [];
+  config: any;
 	url = environment.apiUrl + "/api/v1/data/";
   routes = []
   exportAsConfig: ExportAsConfig = {
@@ -33,6 +34,11 @@ export class DataComponent implements OnInit {
       }
       );
 	  this.getdata();
+    this.config = {
+      itemsPerPage: 12,
+      currentPage: 1,
+      totalItems: this.data.length
+    };
   }
 
   getdata(){
@@ -117,6 +123,10 @@ export class DataComponent implements OnInit {
       this.router.navigate(['/'])
     }
     );
+  }
+
+  pageChanged(event){
+    this.config.currentPage = event;
   }
 
 }
