@@ -85,7 +85,6 @@ export class DataComponent implements OnInit {
   }
 
   remove(id){
-  	console.log(id)
   	Swal.fire({
   title: 'Are you sure?',
   text: 'You will not be able to recover that record!',

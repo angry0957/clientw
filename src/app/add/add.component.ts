@@ -25,7 +25,6 @@ export class AddComponent implements OnInit {
    constructor(private router: Router, private activatedRoute: ActivatedRoute, private http:HttpClient) {
 		this.http.get(environment.apiUrl + '/api/v1/route/').toPromise().then((res:any) => {
 			this.routes = res;
-			console.log(res);
 		},
 		(err:any)=> {
 			if(err.status == 400) {
@@ -95,6 +94,26 @@ export class AddComponent implements OnInit {
       this.router.navigate(['/'])
     }
     );
+  }
+
+  sum(){
+  	let sum = 0
+  	if(this.data.exp){
+  		sum += parseInt(this.data.exp)
+  	}
+  	if(this.data.pra){
+  		sum += parseInt(this.data.pra)
+  	}
+  	if(this.data.petrol){
+  		sum += parseInt(this.data.petrol)
+  	}
+  	if(this.data.income_tax){
+  		sum += parseInt(this.data.income_tax)
+  	}
+  	if(this.data.salary){
+  		sum += parseInt(this.data.salary)
+  	}
+  	this.data.total_expense = sum
   }
 
 }

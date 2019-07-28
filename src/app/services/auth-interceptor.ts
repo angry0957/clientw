@@ -21,7 +21,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    console.log(location.origin, req.url, req.url.includes('login'))
 
     if(req.url.includes('login'))
     {
@@ -33,7 +32,6 @@ export class AuthInterceptor implements HttpInterceptor {
       'Authorization': 'Token ' + localStorage.getItem('token'),
       'Content-Type': 'application/json'
     });
-    console.log("Token added", headers)
 
 
     const cloneReq = req.clone({headers});
