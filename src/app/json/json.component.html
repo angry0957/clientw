@@ -1,0 +1,21 @@
+<a (click)="logout()" class="btn btn-warning mt-2 mb-2 float-right text-white">
+	Logout
+</a>
+<div>
+	<h1 style="text-align: center;">Json Data</h1>
+</div>
+<div *ngFor="let appItem of data; let i = index" class="col-sm-12 top-space">
+	<div class="row">
+		<div class="btn-group col-sm-12 col-md-2 top-space p-r-0">
+			<input placeholder="key" type="text" value={{appItem.FeedsName}} class="form-control p-10 w-100" [(ngModel)]="appItem.FeedsName">
+		</div>
+		<div  class="col-md-8 col-sm-10 top-space pad">
+			<input placeholder="value" type="text" value={{appItem.Link}} class="form-control p-10 w-100" [(ngModel)]="appItem.Link">
+		</div>
+		<div class="btn-group col-md-2 col-sm-2 top-space">
+			<button *ngIf="i == 0 && appItem != data[data.length-1]" (click)="removeFeedList(i)" class="btn btn-danger btn-size">-</button>
+			<button *ngIf="i == 0" (click)="addFeedList(i)" class="btn btn-success btn-size">+</button>
+		</div>
+	</div>
+</div>
+<button (click)="onSubmit()" class="btn float-right btn-success mr-5">{{text}}</button>

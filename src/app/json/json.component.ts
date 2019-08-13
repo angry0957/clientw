@@ -7,39 +7,31 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-json',
+  templateUrl: './json.component.html',
+  styleUrls: ['./json.component.scss']
 })
-export class AddComponent implements OnInit {
-  
+export class JsonComponent implements OnInit {
+  objectKeys = Object.keys;
   error:any = {invalid: false}
-  invalid = false
+
+  arr = ["name1",  "name1"]
+  socailFeedList: any = [{ FeedsName: 'Website', Link: '' }];
+  id;
   isAdd = true
   text = "Add"
-  id;
-  data:any = {}
-  url = environment.apiUrl + '/api/v1/data/'
-  routes:any [] = []
+  url = environment.apiUrl + '/api/v1/json/'
+  data: any = [{ FeedsName: '', Link: '' }];
 
-   constructor(private router: Router, private activatedRoute: ActivatedRoute, private http:HttpClient) {
-		this.http.get(environment.apiUrl + '/api/v1/route/').toPromise().then((res:any) => {
-			this.routes = res;
-		},
-		(err:any)=> {
-			if(err.status == 400) {
-				this.error.error = "Credientials are not valid";
-				this.error.invalid = true
-			}
-		}
-		);
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private http:HttpClient) {
 		if(location.href.includes('edit')){
 			this.isAdd = false
 			this.text = 'Update'
 			this.activatedRoute.queryParams.subscribe((params: Params) => {
 				this.id = params.id;
+				console.log(this.id, 'id')
 				this.http.get(this.url + this.id).toPromise().then((res:any) => {
-					this.data = res;
+					this.data = res.data;
 		},
 		(err:any)=> {
 			if(err.status == 400) {
@@ -55,11 +47,26 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
-  	onSubmit(f: NgForm) {
-  		this.data['route'] = parseInt(this.data['route'])
+  addFeedList(index) {
+  	this.data.push({ FeedsName: 'Website', Link: '' })
+  }
+  
+  removeFeedList(index) {
+  	this.data.splice(this.data.length - 1, 1);
+  }
+
+  print(){
+  	console.log(this.data)
+  }
+
+  onSubmit() {
+  	let obj = {
+		"name": "abdul",
+		"data": this.data
+	}
   		if(this.isAdd == true){
-  			this.http.post(this.url,this.data).toPromise().then((res:any) => {
-			this.router.navigate(['/data']);
+  			this.http.post(this.url, obj).toPromise().then((res:any) => {
+			this.router.navigate(['/jsonshow']);
 		},
 		(err:any)=> {
 			if(err.status == 400) {
@@ -70,8 +77,8 @@ export class AddComponent implements OnInit {
 		);
   		}
 		else {
-			this.http.put(this.url + this.id + '/', this.data).toPromise().then((res:any) => {
-			this.router.navigate(['/data']);
+			this.http.put(this.url + this.id + '/', obj).toPromise().then((res:any) => {
+				this.router.navigate(['/jsonshow']);
 		},
 		(err:any)=> {
 			if(err.status == 400) {
@@ -94,28 +101,6 @@ export class AddComponent implements OnInit {
       this.router.navigate(['/'])
     }
     );
-  }
-
-  sum(){
-  	let sum = 0
-  	if(this.data.exp){
-  		sum += parseInt(this.data.exp)
-  	}
-  	if(this.data.pra){
-  		sum += parseInt(this.data.pra)
-  	}
-  	if(this.data.petrol){
-  		sum += parseInt(this.data.petrol)
-  	}
-  	if(this.data.income_tax){
-  		sum += parseInt(this.data.income_tax)
-  	}
-  	if(this.data.salary){
-  		sum += parseInt(this.data.salary)
-  	}
-  	this.data.total_expense = sum
-  	this.data.income = sum - this.data.bill
-  	this.data.cheque = sum - parseInt(this.data.pra) - parseInt(this.data.income_tax)
   }
 
 }

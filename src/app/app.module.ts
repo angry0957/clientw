@@ -15,6 +15,9 @@ import { EditRouteComponent } from './edit-route/edit-route.component'
 import { ExportAsModule } from 'ngx-export-as';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { JsonComponent } from './json/json.component';
+import {AngularTreeGridModule} from 'angular-tree-grid';
+import { JsonShowComponent } from './json-show/json-show.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     DataComponent,
     AddComponent,
     RouteComponent,
-    EditRouteComponent
+    EditRouteComponent,
+    JsonComponent,
+    JsonShowComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     ExportAsModule,
     NgbModule,
+    AngularTreeGridModule,
     NgxPaginationModule
 
   ],
