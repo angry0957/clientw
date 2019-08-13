@@ -16,7 +16,7 @@ export class JsonComponent implements OnInit {
   error:any = {invalid: false}
 
   arr = ["name1",  "name1"]
-  socailFeedList: any = [{ FeedsName: 'Website', Link: '' }];
+  socailFeedList: any = [{ FeedsName: '', Link: '' }];
   id;
   isAdd = true
   text = "Add"
