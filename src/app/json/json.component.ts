@@ -48,7 +48,7 @@ export class JsonComponent implements OnInit {
   }
 
   addFeedList(index) {
-  	this.data.push({ FeedsName: 'Website', Link: '' })
+  	this.data.push({ FeedsName: '', Link: '' })
   }
   
   removeFeedList(index) {
