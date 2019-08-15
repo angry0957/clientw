@@ -14,6 +14,10 @@ import Swal from 'sweetalert2'
 export class JsonShowComponent implements OnInit {
 	data: any = [];
 	url = environment.apiUrl + "/api/v1/json/";
+  allData = []
+
+  Months = ['Any', 'January', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  month = 0;
 
 
 	constructor(private http:HttpClient, private router: Router) { }
@@ -25,6 +29,7 @@ export class JsonShowComponent implements OnInit {
   getdata(){
   	    this.http.get(this.url).toPromise().then((res:any) => {
         this.data = res;
+        this.allData = res;
       }
       );
   }
@@ -81,6 +86,19 @@ export class JsonShowComponent implements OnInit {
       this.router.navigate(['/'])
     }
     );
+  }
+
+  apply(){
+    if(this.month == 0){
+      this.data = this.allData
+      return
+    }
+    this.data = []
+    for(let i =0; i<this.allData.length;i++){
+      if(this.month == (new Date(this.allData[i].date).getMonth() + 1)){
+        this.data.push(this.allData[i])
+      }
+    }
   }
 
 }

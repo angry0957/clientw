@@ -4,16 +4,31 @@
 <h1 class="text-center">
   Json
 </h1>
+<div>
+  <h1>Filters</h1>
+  <div class=col-sm-3>
+    <select id="month" name="month" [(ngModel)]="month" #route="ngModel" placehoolder="Select Month" required class='form-control'>                                                            
+      <option *ngFor="let i of Months;let in=index" value={{in}} >{{i}}
+      </option>
+    </select> 
+  </div>
+  <a class="btn btn-success m-2" (click)="apply()">Apply</a>
+
+</div>
 <table class="table table-striped table-bordered m-5">
   <tr>
     <th>Sr.</th>
     <th>Json</th>
+    <th>Created</th>
+    <th>Updated</th>
     <th></th>
     <th></th>
   </tr>
   <tr *ngFor="let i of data; let index=index">
     <td>{{index + 1}}</td>
     <td>{{i.data[0].FeedsName}}</td>
+    <td>{{i.date | date:'MM/dd/yyyy h:mm a'}}</td>
+    <td>{{i.updated_at | date:'MM/dd/yyyy h:mm a'}}</td>
     <td><button class="btn btn-info m-1" (click)="edit(i.id)">Edit</button></td>
     <td><button class="btn btn-danger m-1" (click)="remove(i.id)">Delete</button></td>
   </tr>
