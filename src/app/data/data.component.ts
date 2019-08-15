@@ -8,8 +8,6 @@ import { environment } from '../../environments/environment';
 import Swal from 'sweetalert2'
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import { ExportToCsv } from 'export-to-csv';
-// import jsPDF from 'jspdf';
-// import autotable from 'jspdf';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -20,6 +18,7 @@ import 'jspdf-autotable';
 })
 export class DataComponent implements OnInit {
   data = [];
+  allData = []
   config: any;
 	url = environment.apiUrl + "/api/v1/data/";
   routes = []
@@ -31,6 +30,8 @@ export class DataComponent implements OnInit {
     type: 'png', // the type you want to download
     elementId: 'data', // the id of html/table element
   }
+  Months = ['Any', 'January', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  month = 0;
 
   options:any = { 
     fieldSeparator: ',',
@@ -69,6 +70,7 @@ export class DataComponent implements OnInit {
           }
         }
       }
+      this.allData = res;
       this.data = res;
 
 		},
@@ -168,6 +170,19 @@ export class DataComponent implements OnInit {
      })
         doc.save('data.pdf');
 
+  }
+
+  apply(){
+    if(this.month == 0){
+      this.data = this.allData
+      return
+    }
+    this.data = []
+    for(let i =0; i<this.allData.length;i++){
+      if(this.month == (new Date(this.allData[i].date).getMonth() + 1)){
+        this.data.push(this.allData[i])
       }
+    }
+  }
 
 }
